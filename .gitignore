@@ -1,7 +1,4 @@
 node_modules/
-result-data/
-mark/
 
 package-lock.json
 
-mongoUrl.js

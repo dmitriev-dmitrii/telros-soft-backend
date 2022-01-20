@@ -1,9 +1,19 @@
 module.exports =  function (app,mongoose){
 
 	app.post('/create-user', (req, res) => {
+		
 	// console.log(req.body);
 	if(!req.body) return res.sendStatus(400);
 	// если запрос пустой вернем статус 400
+
+	// это для тестов, создам пару юзеров
+	// app.get('/create-user', (req, res) => {
+	// const test = {
+	// 	name:'maya',
+	// 	sureName: 'mmmmm',
+	// 	email: 'abc@mail.com'
+	// }
+	// mongoose.model('Users').create(test)
 
 	mongoose.model('Users').create(req.body)
 	.then(user => res.send(user))
@@ -13,3 +23,4 @@ module.exports =  function (app,mongoose){
 });
 
 }
+
