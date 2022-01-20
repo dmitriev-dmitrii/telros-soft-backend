@@ -8,7 +8,6 @@ module.exports =  function (app,mongoose){
 	mongoose.model('Users').findOneAndRemove(req.body)
 	.then(user => res.send(user))
 
-	// в случае успешной записи вернем в ответе записанный обЬект , в нем должен быть уникалный id который ему присвоила бд
 	.catch(err => res.send(err));
 
 });
