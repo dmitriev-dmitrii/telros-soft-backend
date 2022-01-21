@@ -55,7 +55,14 @@ module.exports =  function (app,mongoose){
 
 	app.get('/admin-login-test/', (req, res) => {
 
-		!req.session.adminName ?  res.send(false) : res.send(true) ;
+		!req.session.adminName ?  res.send({
+			message:'need auth',
+			logined:false
+		}) : res.send({
+			name:req.session.adminName,
+			message:'logined',
+			logined:true
+		}) ;
 
 		});
 
