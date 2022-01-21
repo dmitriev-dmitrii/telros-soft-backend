@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose');
-const mongooseUrl = require('./mongoUrl');
+const mongooseUrl = require('../mongoUrl');
 
 const userObj = require('./userObj');
 // там лежит обьект  настройки  класа user
@@ -17,5 +17,9 @@ mongoose.connect(mongooseUrl,{useNewUrlParser:true})
 	console.log('mongoose error:');
 	console.log(e);
 })
+
+
+
+
 
 module.exports = mongoose;

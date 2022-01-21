@@ -5,15 +5,9 @@ module.exports =  function (app,mongoose){
 	// console.log(req.body);
 	if(!req.body) return res.sendStatus(400);
 	// если запрос пустой вернем статус 400
-
-	// это для тестов, создам пару юзеров
-	// app.get('/create-user', (req, res) => {
-	// const test = {
-	// 	name:'maya',
-	// 	sureName: 'mmmmm',
-	// 	email: 'abc@mail.com'
-	// }
-	// mongoose.model('Users').create(test)
+	
+	if(!req.session.adminName) return res.sendStatus(401)
+	// если не залогинен  401
 
 	mongoose.model('Users').create(req.body)
 	.then(user => res.send(user))
