@@ -30,7 +30,8 @@ module.exports =  function (app,mongoose){
 
 				req.session.adminName=admin.name;
 				// console.log(req.session);
-				res.send({	
+				res.send({
+					name:admin.name,
 					message:'succes logined',
 					logined:true
 				}); 
@@ -52,6 +53,14 @@ module.exports =  function (app,mongoose){
 
 	});
 
+	app.get('/admin-login-test/', (req, res) => {
+
+		!req.session.adminName ?  res.send(false) : res.send(true) ;
+
+		});
+
+// сюда будет приходить запрос при каждом маунте приложения и получать ответ 
+
 	app.post('/admin-logout', function(req, res) {
 		if (req.session.adminName) {
 			delete req.session.adminName;
@@ -62,6 +71,8 @@ module.exports =  function (app,mongoose){
 		})
 	});
 	
+	
+
 };
 
 
