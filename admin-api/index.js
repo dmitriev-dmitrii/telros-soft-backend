@@ -11,6 +11,9 @@ module.exports =  function (app,mongoose){
 
 	app.use(session({
 		secret: 'telrosSecret',
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24 * 1 // 1 день
+		},
 		resave: false,
 		saveUninitialized: false,
 		store: MongoStore.create({ mongoUrl: mongooseUrl })
@@ -55,10 +58,12 @@ module.exports =  function (app,mongoose){
 
 	app.get('/admin-login-test/', (req, res) => {
 
-		!req.session.adminName ?  res.send({
+		!req.session.adminName ?  
+			res.send({
 			message:'need auth',
 			logined:false
-		}) : res.send({
+		}) : 
+			res.send({
 			name:req.session.adminName,
 			message:'logined',
 			logined:true
