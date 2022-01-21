@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+
+cors.SupportsCredentials = true;
 app.use(cors());
 
 const mongoose = require ('./mongoose-settings');
