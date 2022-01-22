@@ -30,7 +30,7 @@ module.exports = {
 		required: false,
 	},
 	img: {
-		
+		type: String,
 		required: false,
 	},
 }

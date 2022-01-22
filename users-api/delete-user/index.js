@@ -4,8 +4,11 @@ module.exports =  function (app,mongoose){
 
 	if(!req.body) return res.sendStatus(400);
 	// если запрос пустой вернем статус 400
-	if(!req.session.adminName) return res.sendStatus(401)
-	// если не залогинен  401
+	if(!req.session.adminName) return res.sendStatus({
+		message:'need auth',
+		logined:false
+	})
+	// если не залогинен  
 
 	const filter =  req.body._id ;
 	// а находим его по собственному id 

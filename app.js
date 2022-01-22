@@ -10,8 +10,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-cors.SupportsCredentials = true;
-app.use(cors());
+// cors.SupportsCredentials = true;
+// app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials:true
+}));
 
 const mongoose = require ('./mongoose-settings');
 

@@ -12,6 +12,7 @@ module.exports =  function (app,mongoose){
 	app.use(session({
 		secret: 'telrosSecret',
 		cookie: {
+			httpOnly: false,
 			maxAge: 1000 * 60 * 60 * 24 * 1 // 1 день
 		},
 		resave: false,
@@ -21,8 +22,10 @@ module.exports =  function (app,mongoose){
 	
 	app.post('/admin-login', function(req, res) {
 
-		mongoose.model('Admin').findOne({name: req.body.name}) 
+	if(!req.body) return res.sendStatus(400);
 
+	mongoose.model('Admin').findOne({name: req.body.name})
+	
 		.then(admin => {
 
 			// console.log(hash(req.body.password));
@@ -49,8 +52,7 @@ module.exports =  function (app,mongoose){
 		}
 		)
 		.catch(err => res.send({	
-			message:'wrong name',
-			err:err,
+			message:err,
 			logined:false
 		}));
 
