@@ -2,12 +2,11 @@ module.exports =  function (app,mongoose){
 
 	app.get('/users', (req, res) => {
 
-	// console.log(req.session);
-	// console.log(!req.session.adminName);
-	if(!req.session.adminName) return res.sendStatus({
+	if(!req.session.adminName) return res.send({
 		message:'need auth',
 		logined:false
 	})
+
 	// если запрос admin не залогинен 
 
 	mongoose.model('Users').find()

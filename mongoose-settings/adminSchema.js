@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Admin = new mongoose.Schema({
+
+module.exports ={
 
     name : {
         type: String,
@@ -10,7 +10,4 @@ const Admin = new mongoose.Schema({
         type: String,
         required: true
     }
-
-})
-
-module.exports = mongoose.model('Admin', Admin)
+}

@@ -1,11 +1,13 @@
 const mongoose = require ('mongoose');
 const mongooseUrl = require('../mongoUrl');
 
-const userObj = require('./userObj');
+const adminSchema = require('./adminSchema');
+const AdminsSchema = new mongoose.Schema(adminSchema);
+mongoose.model('Admin', AdminsSchema);
+
+const userSchema = require('./userSchema');
 // там лежит обьект  настройки  класа user
-
-const UsersSchema = new mongoose.Schema(userObj);
-
+const UsersSchema = new mongoose.Schema(userSchema);
 mongoose.model('Users', UsersSchema);
 // связываем настройки user  монго , изходя из этих натроек он будет отавать ответы для users 
 

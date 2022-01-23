@@ -1,9 +1,12 @@
 
 const crypto = require('crypto')
-const Admin = require('./adminSchema')
+
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const mongooseUrl = require('../mongoUrl');
+
+
+
 
 module.exports =  function (app,mongoose){
 
@@ -27,7 +30,6 @@ module.exports =  function (app,mongoose){
 	mongoose.model('Admin').findOne({name: req.body.name})
 	
 		.then(admin => {
-
 			// console.log(hash(req.body.password));
 			// console.log(admin.password);
 			// res.send( hash(req.body.password) === admin.password );
@@ -36,12 +38,11 @@ module.exports =  function (app,mongoose){
 
 				req.session.adminName=admin.name;
 				// console.log(req.session);
-				res.send({
+				return 	res.send({
 					name:admin.name,
 					message:'succes logined',
 					logined:true
 				}); 
-
 			}
 			else {
 				res.send({	
@@ -52,39 +53,44 @@ module.exports =  function (app,mongoose){
 		}
 		)
 		.catch(err => res.send({	
-			message:err,
+			message:'wrong name',
 			logined:false
 		}));
 
 	});
 
-	app.get('/admin-login-test/', (req, res) => {
 
-		!req.session.adminName ?  
-			res.send({
-			message:'need auth',
-			logined:false
-		}) : 
-			res.send({
+	
+	app.get('/admin-login-test', (req, res) => {
+// сюда будет приходить запрос при каждом маунте приложения и получать ответ 
+		if(!req.session.adminName) {
+		return 	res.send({
+				message:'need auth',
+				logined:false
+			})
+		} 
+
+		if(!!req.session.adminName)  {
+		return 	res.send({
 			name:req.session.adminName,
 			message:'logined',
 			logined:true
-		}) ;
-
-		});
-
-// сюда будет приходить запрос при каждом маунте приложения и получать ответ 
-
-	app.post('/admin-logout', function(req, res) {
-		if (req.session.adminName) {
-			delete req.session.adminName;
-		}
-		res.send({	
-			message:'logout succes',
-			logined:false
-		})
+		})		}
 	});
-	
+
+
+	app.post('/admin-logout', (req,res) => {
+		req.session.destroy(err => {
+			if(err){
+				console.log(err);
+			} else {
+				res.send({	
+					message:'logout succes',
+					logined:false
+				})
+			}
+		});
+	})
 	
 
 };
