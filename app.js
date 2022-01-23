@@ -12,7 +12,7 @@ app.use(morgan('dev'));
 
 
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: ['http://localhost:8080','https://dmitriev-dmitrii.github.io/telros-soft/dist/'],
     credentials:true
 }));
 
