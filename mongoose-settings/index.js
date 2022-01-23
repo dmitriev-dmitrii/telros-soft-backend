@@ -3,6 +3,7 @@ const mongooseUrl = require('../mongoUrl');
 
 const adminSchema = require('./adminSchema');
 const AdminsSchema = new mongoose.Schema(adminSchema);
+
 mongoose.model('Admin', AdminsSchema);
 
 const userSchema = require('./userSchema');

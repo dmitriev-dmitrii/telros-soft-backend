@@ -6,8 +6,6 @@ const MongoStore = require('connect-mongo');
 const mongooseUrl = require('../mongoUrl');
 
 
-
-
 module.exports =  function (app,mongoose){
 
 	// здесь всего 2 метода поэтому не стал разбивать по модулям
@@ -59,10 +57,10 @@ module.exports =  function (app,mongoose){
 
 	});
 
-
-	
 	app.get('/admin-login-test', (req, res) => {
+
 // сюда будет приходить запрос при каждом маунте приложения и получать ответ 
+
 		if(!req.session.adminName) {
 		return 	res.send({
 				message:'need auth',
@@ -77,7 +75,6 @@ module.exports =  function (app,mongoose){
 			logined:true
 		})		}
 	});
-
 
 	app.post('/admin-logout', (req,res) => {
 		req.session.destroy(err => {
@@ -94,7 +91,6 @@ module.exports =  function (app,mongoose){
 	
 
 };
-
 
 function hash(text) {
 	return crypto.createHash('sha1')

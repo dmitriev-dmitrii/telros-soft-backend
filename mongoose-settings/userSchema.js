@@ -29,10 +29,21 @@ module.exports = {
 		default:null,
 		required: false,
 	},
-	img: {
-		type: String,
+
+	imgName: {
+		contentType: String,
 		required: false,
 	},
+	imgDesc: {
+		contentType: String,
+		required: false,
+	},
+	img: {
+		data: Buffer,
+		contentType: String,
+		required: false,
+	},
+
 }
 
 
