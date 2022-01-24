@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "cross-env NODE_ENV=production node ./bin/www  ",
     "serve": "nodemon ./bin/www"
   },
   "author": "dmitriev dmitrii",
@@ -11,6 +11,7 @@
     "body-parser": "^1.18.3",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.17.2",

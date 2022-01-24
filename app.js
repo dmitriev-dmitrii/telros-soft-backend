@@ -10,11 +10,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
+console.log(app.get('env'));
+
+const corsAllow =  app.get('env') === 'production' ? 'https://dmitriev-dmitrii.com/' : 'http://localhost:8080' ;
 
 app.use(cors({
-    origin: ['http://localhost:8080','https://dmitriev-dmitrii.com/'],
+    origin: corsAllow ,
     credentials:true
 }));
+
+
 
 const mongoose = require ('./mongoose-settings');
 
