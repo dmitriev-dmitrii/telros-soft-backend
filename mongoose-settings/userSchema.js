@@ -25,24 +25,24 @@ module.exports = {
 		required: true,
 	},
 	phone: {
-		type: Number,
+		type:String,
 		default:null,
 		required: false,
 	},
 
-	imgName: {
-		contentType: String,
-		required: false,
-	},
-	imgDesc: {
-		contentType: String,
-		required: false,
-	},
-	img: {
-		data: Buffer,
-		contentType: String,
-		required: false,
-	},
+	// imgName: {
+	// 	contentType: String,
+	// 	required: false,
+	// },
+	// imgDesc: {
+	// 	contentType: String,
+	// 	required: false,
+	// },
+	// img: {
+	// 	data: Buffer,
+	// 	contentType: String,
+	// 	required: false,
+	// },
 
 }
 
